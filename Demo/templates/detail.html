@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ module.title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans p-10">
+    <div class="max-w-4xl mx-auto">
+        <a href="/" class="text-blue-500 mb-8 inline-block hover:underline">← Back to Course Overview</a>
+        
+        <h1 class="text-5xl font-extrabold mb-4 text-white">{{ module.title }}</h1>
+        <p class="text-xl text-gray-400 mb-10 italic">"{{ module.description }}"</p>
+
+        <div class="bg-emerald-900/20 p-6 rounded-2xl border-l-4 border-emerald-500 mb-8">
+            <h4 class="text-emerald-400 font-bold text-xs uppercase mb-2">Real-World Application:</h4>
+            <p class="text-gray-300 text-sm">{{ module.real_world }}</p>
+        </div>
+
+        <div class="bg-blue-900/10 p-8 rounded-3xl border border-blue-900/50 mb-12">
+            <h3 class="text-blue-400 font-bold uppercase text-xs mb-4 tracking-widest">Learning Objectives:</h3>
+            <ul class="grid md:grid-cols-2 gap-3">
+                {% for obj in module.objectives %}
+                <li class="flex items-center text-gray-300 text-sm">
+                    <span class="w-1.5 h-1.5 bg-blue-500 rounded-full mr-3"></span> {{ obj }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-white border-b border-gray-800 pb-2">Lesson Material</h2>
+            <p class="text-gray-400 text-lg leading-relaxed">{{ module.content }}</p>
+        </section>
+
+        
+        <section class="mb-12">
+            <div class="bg-black rounded-3xl p-8 border border-gray-800 shadow-2xl overflow-x-auto">
+                <p class="text-gray-600 font-bold text-xs mb-4 uppercase tracking-widest">Example Code</p>
+                <pre class="text-emerald-400 font-mono text-sm leading-loose"><code>{{ module.code }}</code></pre>
+            </div>
+        </section>
+
+        <section class="mb-12 bg-gray-900 p-8 rounded-3xl border border-gray-800">
+            <h3 class="text-blue-400 font-bold uppercase text-xs mb-4">Quick Check:</h3>
+            <p class="mb-6 text-lg">{{ module.quiz.q }}</p>
+            <div class="space-x-4">
+                <button onclick="alert('Correct!')" class="bg-gray-800 hover:bg-gray-700 px-6 py-2 rounded-lg transition">A) {{ module.quiz.a }}</button>
+                <button onclick="alert('Try Again!')" class="bg-gray-800 hover:bg-gray-700 px-6 py-2 rounded-lg transition">B) {{ module.quiz.b }}</button>
+            </div>
+        </section>
+
+        <section class="bg-gradient-to-r from-blue-900/40 to-indigo-900/40 p-10 rounded-3xl border-2 border-blue-500/30 mb-20">
+            <h3 class="text-2xl font-black text-blue-400 mb-4 tracking-tight italic"> STUDENT CHALLENGE</h3>
+            <p class="text-white text-lg font-medium leading-relaxed">{{ module.exercise }}</p>
+        </section>
+    </div>
+</body>
+</html>
